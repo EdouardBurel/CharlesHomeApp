@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
 
         body {
             background-color: #343a40;
-            color: green;
+            color: white;
             font-family: 'Poppins', sans-serif;
             height: 100vh;
             overflow: hidden;
