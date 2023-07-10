@@ -141,6 +141,13 @@ function getFrontDoorCode($building) {
             return '09250';
         case 'Paul Lauters':
             return '&#x1F5DD; 1472 &#x1F5DD;';
+        case 'Vleurgat':
+            return '4386A';
+        case 'Amazone':
+            return '#1469';
+        case 'Aqueduc':
+            return '7159 &#x1F5DD;';
+
         default:
             return 'Unknown';
     }
