@@ -191,7 +191,6 @@
                     </h5>
                     <div class="card-body d-flex flex-column text-secondary">
                         <span class="card-text"> - Cannot access the apartment?</span>
-                        <br>
                         <span class="card-text"> - No hot water? Leak? etc...</span>
                         <div class="mt-auto text-center">
                             <h5 class="card-text text-danger">Click for assistance</h5>
