@@ -69,7 +69,7 @@
             <h1>Dashboard</h1>
             <div class="mt-3 title">
                     <i class="fa fa-home"></i>
-                    <span class="text">Monthly Check-in/out - <?php echo date('F Y'); ?></span>
+                    <span class="text">Monthly Check-in/out : <?php echo date('F').'/'.date('F', strtotime('+1 month')).' '.date('Y'); ?></span>
             </div>
 
             <div class="row justify-content-center">
@@ -109,8 +109,9 @@
                                         }
                                     ?>
                                     </td>
-                                <?php endforeach; ?>
                                 </tr>
+                                <?php endforeach; ?>
+                    
                             </tbody>
                         </table>
                     </div>
@@ -140,7 +141,7 @@
                                 <td style="text-align: center;"><?php echo date('l jS F', strtotime($checkoutRow['EndDate'])); ?></td>
                                 <td style="text-align: center;">
                                 <?php
-                                    $apartmentId = $row['ApartmentID'];
+                                    $apartmentId = $checkoutRow['ApartmentID'];
                                     $query = "SELECT ApartmentName FROM Apartment WHERE ApartmentID = ?";
                                     $statement = $pdo->prepare($query);
                                     $statement->execute([$apartmentId]);
