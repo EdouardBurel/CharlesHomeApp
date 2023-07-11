@@ -9,10 +9,7 @@
 
     if(!isset($_SESSION['user_id'])) {
         header('location: login.php');
-    }
-
-    
-
+    }    
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +41,19 @@
 
                 $reservationName = (string)$user['FirstName'].' '.(string)$user['LastName'];
                 $reservationLastName = (string)$user['LastName'];
+
+
+                $sql = "SELECT Rent, Deposit, EndDate FROM RentalLease WHERE TenantID = :id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($result) {
+                    $rent = $result['Rent'];
+                    $deposit = $result['Deposit'];
+                    $endDateLease = date('d/m/y', strtotime($result['EndDate']));
+                }
 
 
 
@@ -120,9 +130,9 @@
                 </div>
                 <div class="card-body text-secondary">
                     <span> - </span><a href="docs/lease/lease_<?php echo $reservationLastName.'-'.strtolower(str_replace(' ', '', $apartmentName)); ?>.pdf" target="_blank" class="card-text mb-1"> Rental lease (PDF)</a>
-                    <p class="card-text mb-1">- Monthly Rent: 2500€</p>
-                    <p class="card-text mb-1">- Deposit: 900€</p>
-                    <p class="card-text mb-1">- End of the lease: dd/mm/yy</p>
+                    <p class="card-text mb-1">- Monthly Rent: <?php echo $rent; ?>€</p>
+                    <p class="card-text mb-1">- Deposit: <?php echo $deposit; ?>€</p>
+                    <p class="card-text mb-1">- End of the lease: <?php echo $endDateLease; ?></p>
                 </div>
             </div>
 
@@ -151,7 +161,7 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#garbage">View waste collection days</a>
                     <p></p>
                     <?php $frontDoorCode = getFrontDoorCode($buildingName); ?>
-                    <?php echo '<p class="card-text mb-2">Front door code: ' . $frontDoorCode . '</p>'?>
+                    <?php echo '<p class="card-text mb-2"><u>Front door code:</u> '.'<b>'. $frontDoorCode . '</b></p>'?>
                     <p></p>
                     <p class="card-text mb-2">Ask for a cleaning service.</p>
                 </div>
@@ -179,7 +189,7 @@
                         </svg>
                         Need Assistance
                     </h5>
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body d-flex flex-column text-secondary">
                         <span class="card-text"> - Cannot access the apartment?</span>
                         <br>
                         <span class="card-text"> - No hot water? Leak? etc...</span>

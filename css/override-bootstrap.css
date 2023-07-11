@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+
 :root {
     --primary: #ff8f00;
     --secondary: #81DD90;
@@ -60,11 +63,21 @@ h2, h3 {
     color: var(--secondary);
 }
 
+h5 {
+    text-align: center;
+    gap: 2rem;
+}
+
 body {
     background-color: black;
     box-sizing:border-box;
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
+    font-size: 1.1em;
+}
+
+footer{
+    font-size: 0.9rem;
 }
 
 .logoCH{
