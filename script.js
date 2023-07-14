@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#concern').change(function() {
-        var selectedOption = $(this).val();
+        let selectedOption = $(this).val();
         
         if (selectedOption === 'other') {
             $('#other-description').show();
@@ -10,7 +10,7 @@ $(document).ready(function() {
             $('#submit-btn').hide();
         }
         
-        var text = '';
+        let text = '';
         
         switch (selectedOption) {
             case 'no-hot-water':

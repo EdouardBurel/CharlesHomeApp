@@ -10,17 +10,19 @@ if(isset($_POST['saveTenant']))
     $apartment = $_POST['apartment'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
+    $source = $_POST['source'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $number = $_POST['number'];
 
-    $res = $pdo->prepare("INSERT INTO Tenant (ApartmentID, LastName, FirstName, Email, Password, Number) VALUES (:apartment, :lastName, :firstName, :email, :password, :number)");
+    $res = $pdo->prepare("INSERT INTO Tenant (ApartmentID, LastName, FirstName, Email, Password, Number, Source) VALUES (:apartment, :lastName, :firstName, :email, :password, :number, :source)");
     $res->bindParam(':apartment', $apartment);
     $res->bindParam(':lastName', $lastName);
     $res->bindParam(':firstName', $firstName);
     $res->bindParam(':email', $email);
     $res->bindParam(':password', $password);
     $res->bindParam(':number', $number);
+    $res->bindParam(':source', $number);
     $res->execute();
 
     $tenantID = $pdo->lastInsertId();
@@ -107,7 +109,7 @@ if(isset($_POST['updateTenant']))
     $email = $_POST['email'];
     $number = $_POST['number'];
 
-    $query = "UPDATE CurrentTenant SET Apartment=:apartment, TenantName=:name, EndLease=:endLease, Email=:email, Number=:number WHERE CurrentTenantID=:tenant_id";
+    $query = "UPDATE Tenant SET ApartmentID=:apartment, TenantID=:name, EndLease=:endLease, Email=:email, Number=:number WHERE CurrentTenantID=:tenant_id";
     $res = $pdo->prepare($query);
     $res->execute([
         'CurrentTenantID' => $tenant_id,

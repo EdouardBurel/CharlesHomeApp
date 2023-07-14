@@ -79,6 +79,7 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
         <tr>
           <th>Apartment</th>
           <th>Name</th>
+          <th>Source</th>
           <th>End Lease</th>
           <th>Rent</th>
           <th>Deposit</th>
@@ -105,6 +106,7 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
             </td>
         
             <td><?= $tenant['LastName']; ?> <?= $tenant['FirstName']; ?></td>
+            <td><?= $tenant['Source']; ?></td>
             <td><?= $lease['EndDate']; ?></td>
             <td><?= $lease['Rent']; ?>€</td>
             <td><?= $lease['Deposit'];?>€</td>
@@ -159,6 +161,11 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
             <div class="form-group">
               <label for="nameInput">Last Name</label>
               <input type="text" class="form-control" name="lastName" id="lNameInput" placeholder="...">
+            </div>
+
+            <div class="form-group">
+              <label for="nameInput">Source</label>
+              <input type="text" class="form-control" name="source" id="source" placeholder="...">
             </div>
 
             <div class="form-group">

@@ -174,7 +174,7 @@
                                 <th scope="col">Apartment</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Number</th>
-                                <th scope="col">End Lease</th>
+                                <th scope="col">Source</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -197,7 +197,8 @@
                                         </td>
                                         <td><?= $tenant['FirstName'].' '.$tenant['LastName']; ?></td>
                                         <td><?= $tenant['Number']; ?></td>
-                                        <td><?php echo date('jS F Y', strtotime($lease['EndDate'])); ?></td>
+                                        <td><?= $tenant['Source']; ?></td>
+                                        <!-- <td><?php echo date('jS F Y', strtotime($lease['EndDate']));?></td> -->
                                     </tr>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
