@@ -30,7 +30,7 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
     <nav>
         <div class="logo-name">
             <div class="logo-img">
-                <img src="image/logo-key.png" alt="Charles Home">
+                <img src="image/logos/logo-key.png" alt="Charles Home">
             </div>
 
             <span class="logo_name">Charles Home</span>

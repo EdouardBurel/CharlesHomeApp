@@ -25,7 +25,7 @@
     <div class="container d-flex flex-column flex-md-row">
         <nav class="navbar navbar-expand-md navbar-light d-flex flex-md-column">
             <div class="ms-md-auto">
-                <img class="logo-name" src="image/logo-key.png" alt="Charles Home" width="60">
+                <img class="logo-name" src="image/logos/logo-key.png" alt="Charles Home" width="60">
             </div>
             <button
                 class="navbar-toggler"
@@ -197,7 +197,7 @@
                                         </td>
                                         <td><?= $tenant['FirstName'].' '.$tenant['LastName']; ?></td>
                                         <td><?= $tenant['Number']; ?></td>
-                                        <td><?= $tenant['Source']; ?></td>
+                                        <td><img src="image/logos/<?= $tenant['Source'] . '.jpg'; ?>" alt="Logo" width="40px" style="border-radius: 50%"></td>
                                         <!-- <td><?php echo date('jS F Y', strtotime($lease['EndDate']));?></td> -->
                                     </tr>
                                         <?php endif; ?>
