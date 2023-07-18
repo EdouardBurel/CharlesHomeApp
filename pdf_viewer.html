@@ -71,7 +71,7 @@
             contentType: false,
             success: function(response) {
                 // Reload the page to show the updated PDF
-                location.reload();
+                location.reload(true);
 
                 // Update the iframe src with the URL of the newly uploaded PDF
                 const pdfViewer = document.getElementById('pdfViewer');
