@@ -22,7 +22,7 @@ if(isset($_POST['saveTenant']))
     $res->bindParam(':email', $email);
     $res->bindParam(':password', $password);
     $res->bindParam(':number', $number);
-    $res->bindParam(':source', $number);
+    $res->bindParam(':source', $source);
     $res->execute();
 
     $tenantID = $pdo->lastInsertId();

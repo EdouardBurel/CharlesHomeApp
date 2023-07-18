@@ -164,7 +164,12 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
 
             <div class="form-group">
               <label for="nameInput">Source</label>
-              <input type="text" class="form-control" name="source" id="source" placeholder="...">
+              <select class="form-control" name="source" id="source">
+                <option value="CharlesHome">Charles Home</option>
+                <option value="Silverdoor">Silverdoor</option>
+                <option value="Airbnb">Airbnb</option>
+                <option value="Homelike">Homelike</option>
+              </select>
             </div>
 
             <div class="form-group">
