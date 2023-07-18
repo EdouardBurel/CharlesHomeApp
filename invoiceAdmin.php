@@ -60,7 +60,7 @@ $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <ul class="logout-mode">
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         <span class="link-name">Logout</span>
                     </a>
