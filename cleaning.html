@@ -16,7 +16,7 @@
         <div class="row mt-3">
             <div class="col text-center">
                 <!-- PDF Viewer here (you can use an <iframe> or any other preferred method) -->
-                <iframe id="pdfViewer" src="docs/calendarAdmin/Cleaning.pdf" width="100%" height="600"></iframe>
+                <iframe id="pdfViewer" src="docs/calendarAdmin/Cleaning.pdf" width="100%" height="750"></iframe>
             </div>
         </div>
         <div class="row mt-3">
@@ -64,14 +64,14 @@
     
             // Upload the file to the server using AJAX
             $.ajax({
-            url: 'upload.php', // Replace 'upload.php' with the correct server-side endpoint
+            url: 'uploadCleaning.php', // Replace 'upload.php' with the correct server-side endpoint
             method: 'POST',
             data: formData,
             processData: false,
             contentType: false,
             success: function(response) {
                 // Reload the page to show the updated PDF
-                location.reload();
+                location.reload(true);
 
                 // Update the iframe src with the URL of the newly uploaded PDF
                 const pdfViewer = document.getElementById('pdfViewer');

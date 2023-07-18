@@ -246,7 +246,7 @@
         </div>
         <div class="col-md-6 d-flex justify-content-center align-items-center">
             <a href="https://www.charleshome.com/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                <img src="image/logo-key.png" alt="CHARLES HOME" width="30px">
+                <img src="image/logos/logo-key.png" alt="CHARLES HOME" width="30px">
               </a>
         </div>
         <div class="col-md-3 d-flex align-items-center justify-content-end">

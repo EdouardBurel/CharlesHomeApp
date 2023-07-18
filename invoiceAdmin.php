@@ -60,7 +60,7 @@ $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <ul class="logout-mode">
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         <span class="link-name">Logout</span>
                     </a>
@@ -85,7 +85,7 @@ $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($invoices as $invoice): ?>
         <!-- Table rows will be dynamically populated from the database -->
         <tr>
-          <td><?php echo $invoice['Month'].' '.$invoice['Year'];?></td>
+          <td><?php echo date('F Y', mktime(0, 0, 0, $invoice['Month'], 1)); ?></td>
           <td><?= $invoice['InvoiceNumber']; ?></td>
           <td><?= $invoice['FileInvoice']; ?></td>
           <td>
@@ -173,6 +173,8 @@ $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     if ($stmt->execute()) {
                       echo "File uploaded successfully";
+                      // Redirect to admin.php after a short delay (3 seconds in this example)
+                      echo '<meta http-equiv="refresh" content="2;url=admin.php">';
                   } else {
                       echo "Failed to upload the file";
                   }
