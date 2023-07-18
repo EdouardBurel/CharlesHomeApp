@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar Cleaning</title>
+    <!-- Add necessary CSS and JavaScript libraries -->
+    <!-- For example, you can include Bootstrap for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col text-center">
+                <h2>Calendar Cleaning</h2>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <!-- PDF Viewer here (you can use an <iframe> or any other preferred method) -->
+                <iframe id="pdfViewer" src="docs/calendarAdmin/Cleaning.pdf" width="100%" height="600"></iframe>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <!-- Button for updating the PDF file -->
+                <button class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">Update PDF</button>
+                <a href="admin.php" class="btn btn-secondary">Return</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload New PDF</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add a file input field for selecting the new PDF -->
+                    <input type="file" id="pdfFileInput" accept=".pdf">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="uploadPDF()">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function uploadPDF() {
+            // Get the file input element
+            const fileInput = document.getElementById('pdfFileInput');
+    
+            // Get the selected file
+            const file = fileInput.files[0];
+    
+            // Create a new FormData object
+            const formData = new FormData();
+            formData.append('pdfFile', file);
+    
+            // Upload the file to the server using AJAX
+            $.ajax({
+            url: 'upload.php', // Replace 'upload.php' with the correct server-side endpoint
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Reload the page to show the updated PDF
+                location.reload();
+
+                // Update the iframe src with the URL of the newly uploaded PDF
+                const pdfViewer = document.getElementById('pdfViewer');
+                pdfViewer.src = response; // The server response should contain the URL of the new PDF
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+        }
+    </script>
+    
+    
+    
+
+    <!-- Add the necessary JavaScript libraries -->
+    <!-- For example, you can include jQuery and Bootstrap's JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

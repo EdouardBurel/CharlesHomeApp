@@ -111,7 +111,6 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
             <td><?= $lease['Rent']; ?>€</td>
             <td><?= $lease['Deposit'];?>€</td>
             <td>
-              <a href="lib/code.php?CurrentTenantID=<?= $tenant['TenantID']; ?>" class="btn btn-info" data-toggle="modal" data-target="#editTenantModal">Update</a>
               <form action="lib/code.php" method="POST" class="d-inline">
                 <button type="submit" name="delete_tenant" value="<?=$tenant['TenantID']; ?>" class="btn-delete btn btn-danger">Supprimer</a>
               </form>
@@ -213,79 +212,6 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
       </div>
     </div>
   </div>
-  <!-- Update Tenant Modal --> 
-    <div class="modal fade" id="editTenantModal" tabindex="-1" role="dialog" aria-labelledby="editTenantModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="addTenantModalLabel">Edit a Tenant</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <!-- Tenant form fields -->
-            <?php
-            if (isset($_GET['CurrentTenantID'])) {
-                $tenant_id = $_GET['CurrentTenantID'];
-                $query = "SELECT * FROM CurrentTenant WHERE  CurrentTenantID = :tenant_id";
-                $res = $pdo->prepare($query);
-                $res->bindParam(":tenant_id", $tenant_id);
-                $res->execute();
-
-                if ($res->rowCount() > 0) {
-                    $tenant = $res->fetch(PDO::FETCH_ASSOC);
-                ?>  
-            <form action="lib/code.php" method="POST">
-                <input type='hidden' name="CurrentTenantID" value="<?= $tenant['CurrentTenantID']; ?>">
-                <div class="form-group">
-                <label for="apartmentInput">Apartment</label>
-                <select class="form-control" id="apartmentSelect" name="apartment">
-                <?php
-                  $stmt = $pdo->query("SELECT ApartmentID, Name FROM Apartment");
-                  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $apartmentID = $row['ApartmentID'];
-                    $apartmentName = $row['Name'];
-                  ?>
-                    <option value="<?= $apartmentID; ?>"><?= $apartmentName; ?></option>
-                    <?php
-                }
-                ?>
-
-              </select>
-                </div>
-                <div class="form-group">
-                <label for="nameInput">Name</label>
-                <input type="text" class="form-control" name="name" value="<?= $tenant['TenantName']; ?>" id="nameInput">
-                </div>
-                <div class="form-group">
-                <label for="endLeaseInput">End Lease</label>
-                <input type="date" name="endLease" class="form-control" id="endLeaseInput">
-                </div>
-                <div class="form-group">
-                <label for="emailInput">Email</label>
-                <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email">
-                </div>
-                <div class="form-group">
-                <label for="numberInput">Number</label>
-                <input type="text" name="number" class="form-control" id="numberInput" placeholder="Number">
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="updateTenant">Edit Tenant</button>
-                </div>
-            </form>
-            </div>
-        </div>
-                    <?php
-                } else {
-                    echo "<h4> No such Id found</h4>"; 
-                }
-            }
-            ?>
-        </div>
-    </div>
 
   <!-- jQuery and Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

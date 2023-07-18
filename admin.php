@@ -52,6 +52,12 @@
                             Tenants</a>
                     </li>
                     <li>
+                        <a href="cleaning.html" class="nav-link">
+                        <i class="fa-solid fa-broom"></i>
+                            Cleaning</a>
+                    </li>
+
+                    <li>
                         <a href="invoiceAdmin.php" class="nav-link" style="margin-bottom: 9rem;">
                         <i class="fa-solid fa-file-invoice"></i>
                             Invoices</a>
@@ -116,6 +122,7 @@
                         </table>
                     </div>
                 </div>
+
                 <div class="col-md-6 mb-4">
                     <div class="box">
                     <table class="table table-striped" style="border-collapse: collapse;">
@@ -158,6 +165,10 @@
                     </table>
                     </div>
                 </div>
+            </div>
+
+            <div style="text-align: right;">
+                <a class="btn btn-primary mb-3" href="pdf_viewer.html">View Calendar</a>
             </div>
 
             <div class="mt-3 mb-3 title">
