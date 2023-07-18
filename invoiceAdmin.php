@@ -85,7 +85,7 @@ $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($invoices as $invoice): ?>
         <!-- Table rows will be dynamically populated from the database -->
         <tr>
-          <td><?php echo $invoice['Month'].' '.$invoice['Year'];?></td>
+          <td><?php echo date('F Y', mktime(0, 0, 0, $invoice['Month'], 1)); ?></td>
           <td><?= $invoice['InvoiceNumber']; ?></td>
           <td><?= $invoice['FileInvoice']; ?></td>
           <td>

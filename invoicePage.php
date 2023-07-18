@@ -63,7 +63,7 @@
                 <tbody>
                     <?php foreach($files as $file): ?>
                         <tr>
-                            <td><?php echo date('F', mktime(0, 0, 0, $file['Month'], 1)).' '.$file['Year'];?></td>
+                            <td><?php echo date('F Y', mktime(0, 0, 0, $file['Month'], 1)); ?></td>
                             <td><?php echo $file['FileInvoice'];?></td>
                             <td>
                                 <a href="download.php?file_id=<?php echo $file['TenantID']; ?>">Download</a>
