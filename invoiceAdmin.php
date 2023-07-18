@@ -173,6 +173,8 @@ $invoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
                     if ($stmt->execute()) {
                       echo "File uploaded successfully";
+                      // Redirect to admin.php after a short delay (3 seconds in this example)
+                      echo '<meta http-equiv="refresh" content="2;url=admin.php">';
                   } else {
                       echo "Failed to upload the file";
                   }
