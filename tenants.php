@@ -60,7 +60,7 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
                 </li>
             </ul>
 
-            <ul class="logout-mode">
+            <ul class="logout-mode" style="color:darkorange;">
                 <li>
                     <a href="logout.php">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
