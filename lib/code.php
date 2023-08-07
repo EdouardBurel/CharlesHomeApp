@@ -12,7 +12,7 @@ if(isset($_POST['saveTenant']))
     $lastName = $_POST['lastName'];
     $source = $_POST['source'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $number = $_POST['number'];
 
     $res = $pdo->prepare("INSERT INTO Tenant (ApartmentID, LastName, FirstName, Email, Password, Number, Source) VALUES (:apartment, :lastName, :firstName, :email, :password, :number, :source)");
