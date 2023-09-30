@@ -1,6 +1,10 @@
 <?php
 ini_set('display_errors', 'off');
+
 session_start();
+$csrfToken = bin2hex(random_bytes(32)); // Génère un jeton CSRF aléatoire
+$_SESSION['csrf_token'] = $csrfToken; // Stocke le jeton dans la session
+
 $pdo = new PDO('mysql:dbname=edouardburel_charleshome;host=mysql-edouardburel.alwaysdata.net', '302132_chome', 'Charleshome1');
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -136,6 +140,9 @@ $leases = $stmtLease->fetchAll(PDO::FETCH_ASSOC);
         <div class="modal-body">
           <!-- Tenant form fields -->
           <form action="lib/code.php" method="POST">
+            
+            <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+
             <div class="form-group">
               <label for="apartmentInput">Apartment</label>
               <select class="form-control" id="apartmentSelect" name="apartment">

@@ -3,10 +3,15 @@ $pdo = new PDO('mysql:dbname=edouardburel_charleshome;host=mysql-edouardburel.al
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+session_start(); 
+
 // ADD TENANT
 
 if(isset($_POST['saveTenant']))
 {
+    if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Erreur CSRF détectée");
+    }
     $apartment = $_POST['apartment'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
@@ -14,8 +19,9 @@ if(isset($_POST['saveTenant']))
     $email = $_POST['email'];
     $password = $_POST['password'];
     $number = $_POST['number'];
+    $csrf_token = $_POST['csrf_token'];
 
-    $res = $pdo->prepare("INSERT INTO Tenant (ApartmentID, LastName, FirstName, Email, Password, Number, Source) VALUES (:apartment, :lastName, :firstName, :email, :password, :number, :source)");
+    $res = $pdo->prepare("INSERT INTO Tenant (ApartmentID, LastName, FirstName, Email, Password, Number, Source, csrf_token) VALUES (:apartment, :lastName, :firstName, :email, :password, :number, :source, :csrf_token)");
     $res->bindParam(':apartment', $apartment);
     $res->bindParam(':lastName', $lastName);
     $res->bindParam(':firstName', $firstName);
@@ -23,6 +29,7 @@ if(isset($_POST['saveTenant']))
     $res->bindParam(':password', $password);
     $res->bindParam(':number', $number);
     $res->bindParam(':source', $source);
+    $res->bindParam(':csrf_token', $csrf_token);
     $res->execute();
 
     $tenantID = $pdo->lastInsertId();
