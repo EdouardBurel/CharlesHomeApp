@@ -5,8 +5,8 @@ $pdo = new PDO('mysql:dbname=edouardburel_charleshome;host=mysql-edouardburel.al
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(isset($_POST['submit'])){
-    $email= $_POST['email'];
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     $query = $pdo->prepare("SELECT * FROM Tenant WHERE Email = :email");
@@ -16,29 +16,28 @@ if(isset($_POST['submit'])){
 
     if ($res) {
         $passwordHash = $res['password'];
-            if (password_verify($password, $passwordHash)) {
-                $messages[] = "Connexion réussie";
-            } else {
-                $errors[] = 'Email ou mot de passe incorrect.';
-            }
+        if (password_verify($password, $passwordHash)) {
+            $messages[] = "Connexion réussie";
+        } else {
+            $errors[] = 'Email ou mot de passe incorrect.';
+        }
 
-       if($res['Role'] == 'admin'){
-   
-          $_SESSION['admin_id'] = $res['TenantID'];
-          header('location:/admin.php');
- 
-       }elseif($res['Role'] == 'user'){
- 
-          $_SESSION['user_id'] = $res['TenantID'];
-          header('location:index.php');
+        if ($res['Role'] == 'admin') {
 
-       }
+            $_SESSION['admin_id'] = $res['TenantID'];
+            header('location:/admin.php');
+        } elseif ($res['Role'] == 'user') {
+
+            $_SESSION['user_id'] = $res['TenantID'];
+            header('location:index.php');
+        }
     }
- }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,20 +84,21 @@ if(isset($_POST['submit'])){
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <div class="form-container">
             <img class="logo" src="image/logos/logo_charles-home.png" alt="Logo">
             <form method="POST" enctype="multipart/form-data">
-                <input name="email" type="text" class="form-control" placeholder="Username" required><br>
-                <input name="password" type="password" class="form-control" placeholder="Password" required><br>
+                <input name="email" type="text" class="form-control" placeholder="Username" required value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"><br>
+                <input name="password" type="password" class="form-control" placeholder="Password" required value="<?php echo htmlspecialchars($_POST['password'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"><br>
                 <div class="btn-login">
-                    <button name="submit" type="submit" class="btn">Login</button>
+                    <button name="submit" type="submit" class="btn">Loginus</button>
                 </div>
             </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
 
+</html>
