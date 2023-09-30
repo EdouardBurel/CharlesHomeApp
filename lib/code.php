@@ -17,7 +17,7 @@ if(isset($_POST['saveTenant']))
     $lastName = $_POST['lastName'];
     $source = $_POST['source'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $number = $_POST['number'];
     $csrf_token = $_POST['csrf_token'];
 

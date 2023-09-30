@@ -15,6 +15,12 @@ if(isset($_POST['submit'])){
     $res = $query->fetch(PDO::FETCH_ASSOC);
 
     if ($res) {
+        $passwordHash = $res['password'];
+            if (password_verify($password, $passwordHash)) {
+                $messages[] = "Connexion réussie";
+            } else {
+                $errors[] = 'Email ou mot de passe incorrect.';
+            }
 
        if($res['Role'] == 'admin'){
    

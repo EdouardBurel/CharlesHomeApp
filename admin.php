@@ -64,7 +64,7 @@
                     </li>
 
                     <li>
-                        <a href="logout.php" class="logout nav-link" style="border-top: 1px solid lightgray;">
+                        <a href="logout.php" class="logout nav-link" style="border-top: 1px solid lightgray; color:darkorange">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             Logout</a>
                     </li>
